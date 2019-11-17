@@ -2,22 +2,56 @@
   Mars
 </h1>
 <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      Deimos
-    </div>
-    <div class="col-md-9">
-      <input type="text" placeholder="input in format hours:minute" style="width: 60%;" #inputDeimos>
+  <div *ngIf="error">
+    <div class="alert alert-danger">
+      {{error}}
     </div>
   </div>
   <div class="row">
-      <div class="col-md-3">
-        Phobos
-      </div>
-      <div class="col-md-9">
-        <input type="text" placeholder="input in format hours:minute" style="width: 60%;" #inputPhobos>
-      </div>
+    <div class="col-md-12" style="text-align: center;">
+      <strong>Deimos</strong>
     </div>
-    <button class="btn-success" (click)="calculate(inputDeimos,inputPhobos)">Calculate</button>
-    <h2 style="text-align: center; background-color: #c5e1a5;">{{calculatedMinutes}}</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      Rise:
+    </div>
+    <div class="col-md-9">
+      <input type="text" placeholder="input in format hours:minute" style="width: 60%;" #inputRiseDeimos>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      Set:
+    </div>
+    <div class="col-md-9">
+      <input type="text" placeholder="input in format hours:minute" style="width: 60%;" #inputSetDeimos>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12" style="text-align: center;">
+      <strong>Phobos</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      Rise:
+    </div>
+    <div class="col-md-9">
+      <input type="text" placeholder="input in format hours:minute" style="width: 60%;" #inputRisePhobos>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      Set:
+    </div>
+    <div class="col-md-9">
+      <input type="text" placeholder="input in format hours:minute" style="width: 60%;" #inputSetPhobos>
+    </div>
+  </div>
+
+  <button class="btn-success"
+    (click)="calculate(inputRiseDeimos,inputSetDeimos,inputRisePhobos,inputSetPhobos)">Calculate</button>
+  <h2 style="text-align: center; background-color: #c5e1a5;">{{calculatedMinutes}}</h2>
 </div>
