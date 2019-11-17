@@ -32,24 +32,31 @@ describe('AppComponent', () => {
     expect(difference).toEqual(807);
   })
 
-  it('should return 1 when twilight rule is present', () => {
+  it('should calculate overlap correctly', () => {
+    let app = new AppComponent();
+    const difference = app.getOverlap(new MoonModel(app.createTimeStamp("10:20"), app.createTimeStamp("22:07")), 
+    new MoonModel(app.createTimeStamp("14:00"), app.createTimeStamp("22:40")));
+    expect(difference).toEqual(807);
+  })
+
+  it('should calculate overlap correctly for small overlap', () => {
+    let app = new AppComponent();
+    const difference = app.getOverlap(new MoonModel(app.createTimeStamp("18:55"), app.createTimeStamp("4:97")), 
+    new MoonModel(app.createTimeStamp("10:39"), app.createTimeStamp("4:00")));
+    expect(difference).toEqual(1045);
+  })
+
+  it('should return 1 when twilight rule is present for same set and rise', () => {
     let app = new AppComponent();
     const difference = app.getOverlap(new MoonModel(app.createTimeStamp("12:32"), app.createTimeStamp("17:06")), 
     new MoonModel(app.createTimeStamp("17:06"), app.createTimeStamp("19:78")));
     expect(difference).toEqual(1);
   })
 
-  it('should return 1 when twilight rule is present', () => {
+  it('should return 1 when twilight rule is present for same rise and set', () => {
     let app = new AppComponent();
     const difference = app.getOverlap(new MoonModel(app.createTimeStamp("22:11"), app.createTimeStamp("00:36")), 
     new MoonModel(app.createTimeStamp("07:00"), app.createTimeStamp("22:11")));
     expect(difference).toEqual(1);
-  })
-
-  it('should calculate overlap correctly', () => {
-    let app = new AppComponent();
-    const difference = app.getOverlap(new MoonModel(app.createTimeStamp("10:20"), app.createTimeStamp("22:07")), 
-    new MoonModel(app.createTimeStamp("14:00"), app.createTimeStamp("22:40")));
-    expect(difference).toEqual(807);
   })
 });
