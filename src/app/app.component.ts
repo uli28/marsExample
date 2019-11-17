@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'gram-ast-mars';
+  calculatedMinutes: string = "abc";
+
+  calculate(inputDeimos, inputPhobos) {
+    console.log(inputDeimos.value);
+    console.log(inputPhobos.value);
+  }
 }

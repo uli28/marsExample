@@ -22,6 +22,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('gram-ast-mars');
   });
 
+  it(`new test`, () => {
+    expect('gram-ast-mars').toEqual('gram-ast-mars');
+  });
+
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
