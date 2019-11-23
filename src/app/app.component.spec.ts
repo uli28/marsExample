@@ -2,8 +2,6 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { TimeStampModel } from './timestamp-model';
 import { MoonModel } from './moon-model';
-import { stringify } from 'querystring';
-import { create } from 'domain';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
