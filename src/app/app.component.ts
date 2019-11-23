@@ -25,7 +25,7 @@ export class AppComponent {
   }
 
   getOverlap(deimos: MoonModel, phobos: MoonModel): number {
-    if(this.haveOnePointInCommon(deimos, phobos)) {
+    if (this.haveOnePointInCommon(deimos, phobos)) {
       return 1;
     }
     let amountMinutesDeimos = this.getDifference(deimos.rise, deimos.set);
@@ -33,11 +33,26 @@ export class AppComponent {
 
     let differenceRiseDeimosToPhobos = this.getDifference(deimos.rise, phobos.rise);
     let differenceRisePhobosToDeimos = this.getDifference(phobos.rise, deimos.rise);
-    if (differenceRiseDeimosToPhobos < differenceRisePhobosToDeimos) {
+
+    console.log('differenceRiseDeimosToPhobos' + differenceRiseDeimosToPhobos);
+    console.log('differenceRisePhobosToDeimos' + differenceRisePhobosToDeimos);
+    const firstRisingMoon = this.getMoonThatRisesFirst(deimos, phobos, differenceRiseDeimosToPhobos, differenceRisePhobosToDeimos);
+
+    if(firstRisingMoon === deimos) {
       return this.calculateOverlap(differenceRiseDeimosToPhobos, amountMinutesDeimos, amountMinutesPhobos);
     } else {
       return this.calculateOverlap(differenceRisePhobosToDeimos, amountMinutesPhobos, amountMinutesDeimos);
     }
+  }
+
+  getMoonThatRisesFirst(deimos: MoonModel, phobos: MoonModel, differenceRiseDeimosToPhobos: number, differenceRisePhobosToDeimos: number): MoonModel {
+    const minuteTimeStampSetDeimos:number = this.getAmountOfMinutes(deimos.rise) + differenceRiseDeimosToPhobos;
+    const minuteTimeStampSetPhobos:number = this.getAmountOfMinutes(phobos.rise) + differenceRisePhobosToDeimos;
+    if( minuteTimeStampSetDeimos >= 25*100 && minuteTimeStampSetPhobos < 25*100) {
+      return phobos;
+    } else if (minuteTimeStampSetDeimos < 25*100 && minuteTimeStampSetPhobos >= 25*100) {
+      return deimos;
+    } 
   }
 
   haveOnePointInCommon(moon1: MoonModel, moon2: MoonModel): boolean {
